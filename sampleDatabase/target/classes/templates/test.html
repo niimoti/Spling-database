@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <th>sample1</th>
+            <th>sample2</th>
+            <th>sample3</th>
+        </tr>
+
+        <tr th:each="tests : ${test}">
+            <td>[[${tests.sample1}]]</td>
+            <td>[[${tests.sample2}]]</td>
+            <td>[[${tests.sample3}]]</td>
+        </tr>
+
+    </table>
+
+    <p><a href="/">登録画面へ</a>
+
+</body>
+</html>
