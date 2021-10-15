@@ -25,7 +25,7 @@ ul {
     animation: loop-slide 10ms infinite linear 1s both;
     /*上記のショートハンドで略したものの詳細*/
     /*animation-name: loop-slide;　　　　　　 アニメーション名 */
-    /*animation-duration: 20s;　　　　　　　　 開始から終了までの所要時間 */
+    /*animation-duration: ;　　　　　　　　 開始から終了までの所要時間 */
     /*animation-iteration-count: infinite;　アニメーションのループ回数 */
     /*animation-timing-function: linear;　　 動きの加減速 */
     /*animation-delay: 1s;　　　　　　　　　 　 アニメーションが開始するまでの遅延時間 */
