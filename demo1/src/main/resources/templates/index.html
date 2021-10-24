@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{print}" method="post">
+        <label>
+            sample.pdf
+            <input type="text" name="path" th:value="${samplePath}" hidden>
+            <button>送信</button>
+        </label>
+    </form>
+    <form th:action="@{print}" method="post">
+        <label>
+            練習.pdf
+            <input type="text" name="path" th:value="${renPath}" hidden>
+            <button>送信</button>
+        </label>
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${filePath}]]</title>
+    <style>
+        iframe[src$=".pdf"]{
+            width:100%;
+            height:80vh;
+        }
+    </style>
+</head>
+<body>
+静的呼び出し
+<iframe th:src="@{PDF/sample.pdf}" width="100%" height="100%"></iframe>
+動的呼び出し
+<iframe th:src="@{PDF/{path}(path=${filePath})}" width="100%" height="100%"></iframe>
+</body>
+</html>
