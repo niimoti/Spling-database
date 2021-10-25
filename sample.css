@@ -1,6 +1,6 @@
 h1{
     text-align: center;
-    color: blue;
+    color: black;
 }
 
 #aa{
@@ -8,6 +8,55 @@ h1{
 }
 
 body{
-    color: blue;
-    background: azure;
+    padding-top: 90px; /* ヘッダーの後ろに要素が隠れないようにするため */
 }
+
+/*.container{*/
+/*    position: relative;*/
+/*    padding-bottom: 60px;*/
+/*    box-sizing: border-box;*/
+/*    min-height: 100vh;*/
+/*}*/
+
+header {
+    width: 100%; /* 幅いっぱいを指定 */
+    height: 100px; /* 高さを50pxに指定 */
+    background: rgba(255, 204, 255, 0.5); /* 背景のみ半透明 */
+    padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+    box-sizing: border-box; /* padding分を含んで幅を100%にするため */
+    position: fixed; /* ウィンドウを基準に画面に固定 */
+    top: 0; /* 上下の固定位置を上から0pxにする */
+    left: 0; /* 左右の固定位置を左から0pxにする */
+    display: flex; /* 中の要素を横並びにする */
+    align-items: center; /* 中の要素を上下中央に並べる */
+}
+
+.hmenu {
+    display: flex; /* 中の要素を横並びにする */
+}
+
+.hmenu li {
+    list-style: none; /* リストの[・]を消す */
+}
+
+.hmenu li + li {
+    margin-left: 160px; /* メニューそれぞれに間隔をあけるため */
+}
+
+footer{
+    width: 100%; /* 幅いっぱいを指定 */
+    height: 500vm; /* 高さを50pxに指定 */
+    background: rgba(255, 204, 255, 0.5); /* 背景のみ半透明 */
+    padding: 20px 50px; /* ヘッダーに上下左右それぞれ余白を指定 */
+    position: relative; /* ウィンドウを基準に画面に固定 */
+    bottom: 0; /* 上下の固定位置を上から0pxにする */
+}
+.fmenu3{
+    display: block;
+}
+
+main {
+    height: 500vw; /* スクロールの演出を見れるようにmainに高さを指定 */
+}
+
+
