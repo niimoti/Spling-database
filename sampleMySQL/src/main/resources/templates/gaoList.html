@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>がおID</td>
+        <td>がおName</td>
+    </tr>
+    <tr th:each="gao : ${gao}">
+        <td th:text="${gao.gaoId}"></td>
+        <td th:text="${gao.gaoName}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
