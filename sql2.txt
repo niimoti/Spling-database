@@ -1,14 +1,20 @@
-CREATE DATABASE sample;
-  USE sample;
+CREATE DATABASE moremore;
+  USE moremore;
 
-    CREATE TABLE sample_table (
-    id VARCHAR(8) PRIMARY KEY,
-    name VARCHAR(64)
+    CREATE TABLE users (
+    username VARCHAR(255) PRIMARY KEY,
+    password VARCHAR(255),
+    role VARCHAR(255),
+    email VARCHAR(255),
+    name VARCHAR(255),
+    sp_teacher boolean not null,
+    teacher boolean not null,
+    student boolean not null
   );
 
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'password'; 
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; 
 
-GRANT ALL PRIVILEGES ON sample.*
-   TO root@localhost;
+GRANT ALL PRIVILEGES ON moremore.*
+   TO user@localhost;
 
 FLUSH PRIVILEGES;
