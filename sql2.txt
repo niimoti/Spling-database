@@ -1,7 +1,14 @@
 CREATE DATABASE moremore;
   USE moremore;
 
-    CREATE TABLE users (
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; 
+
+GRANT ALL PRIVILEGES ON moremore.*
+   TO user@localhost;
+
+FLUSH PRIVILEGES;
+
+CREATE TABLE users (
     username VARCHAR(255) PRIMARY KEY,
     password VARCHAR(255),
     role VARCHAR(255),
@@ -9,12 +16,74 @@ CREATE DATABASE moremore;
     name VARCHAR(255),
     sp_teacher boolean not null,
     teacher boolean not null,
-    student boolean not null
-  );
+    student boolean not null,
+    expired_student boolean not null
+);
 
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'password'; 
+CREATE TABLE companys (
+    companysname VARCHAR(255) PRIMARY KEY,
+    industry VARCHAR(255),
+    candidate VARCHAR(255)
+);
 
-GRANT ALL PRIVILEGES ON moremore.*
-   TO user@localhost;
+CREATE TABLE explanation(
+    companysname VARCHAR(255) PRIMARY KEY,
+    reservedate DATE,
+    reservedeadline DATE,
+    contents VARCHAR(255),
+    place VARCHAR(255),
+    url VARCHAR(255),
+    file VARCHAR(255),
+    FOREIGN KEY (companysname) REFERENCES companys(companysname)
+);
 
-FLUSH PRIVILEGES;
+CREATE TABLE reserve(
+    username VARCHAR(255) ,
+    companyname VARCHAR(255),
+    PRIMARY KEY (username,companyname),
+    FOREIGN KEY (username) REFERENCES users(username),
+    FOREIGN KEY (companyname) REFERENCES companys(companysname)
+);
+
+CREATE TABLE teacher(
+    username VARCHAR(255) PRIMARY KEY ,
+    class VARCHAR(255),
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+CREATE TABLE student(
+    username VARCHAR(255) PRIMARY KEY ,
+    industry VARCHAR(255),
+    class VARCHAR(255),
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+CREATE TABLE expired_student(
+    username    VARCHAR(255) PRIMARY KEY,
+    companyname VARCHAR(255),
+    FOREIGN KEY (username) REFERENCES users (username),
+    FOREIGN KEY (companyname) REFERENCES companys (companysname)
+);
+
+REATE TABLE qualification(
+    username VARCHAR(255) ,
+    qualification VARCHAR(255),
+    PRIMARY KEY (username,qualification),
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
+CREATE TABLE questionnaire_date(
+    questionnaireid VARCHAR(255) PRIMARY KEY,
+    answerdeadline VARCHAR(255),
+    distributiondate VARCHAR(255)
+);
+
+CREATE TABLE questionnaire_result(
+    questionnaireid VARCHAR(255),
+    username VARCHAR(255),
+    questionid VARCHAR(255),
+    answer VARCHAR(255),
+    PRIMARY KEY (questionnaireid,username,questionid),
+    FOREIGN KEY (questionnaireid,questionid) REFERENCES questionnaire_detail(questionnaireid,questionid),
+    FOREIGN KEY (username) REFERENCES users(username)
+);
