@@ -72,18 +72,28 @@ REATE TABLE qualification(
     FOREIGN KEY (username) REFERENCES users(username)
 );
 
-CREATE TABLE questionnaire_date(
-    questionnaireid VARCHAR(255) PRIMARY KEY,
-    answerdeadline VARCHAR(255),
-    distributiondate VARCHAR(255)
+CREATE TABLE question(
+    questionid VARCHAR(255),
+    questioncontents VARCHAR(255),
+    questionformat VARCHAR(255),
+    PRIMARY KEY (questionid,questioncontents,questionformat)
 );
 
-CREATE TABLE questionnaire_result(
-    questionnaireid VARCHAR(255),
-    username VARCHAR(255),
+CREATE TABLE questionnaire(
+    questionnaireid VARCHAR(127),
     questionid VARCHAR(255),
-    answer VARCHAR(255),
-    PRIMARY KEY (questionnaireid,username,questionid),
-    FOREIGN KEY (questionnaireid,questionid) REFERENCES questionnaire_detail(questionnaireid,questionid),
-    FOREIGN KEY (username) REFERENCES users(username)
+    answerdeadline DATE,
+    distributiondate DATE,
+    PRIMARY KEY (questionnaireid,questionid),
+    FOREIGN KEY (questionid) REFERENCES question(questionid)
+);
+
+CREATE TABLE answer(
+   questionnaireid VARCHAR(127),
+   username VARCHAR(255),
+   questionid VARCHAR(255),
+   answer VARCHAR(127),
+   PRIMARY KEY (questionnaireid,username,questionid,answer),
+   FOREIGN KEY (questionnaireid,questionid) REFERENCES questionnaire(questionnaireid,questionid),
+   FOREIGN KEY (username) REFERENCES users(username)
 );
