@@ -21,9 +21,9 @@ CREATE TABLE users (
 );
 
 CREATE TABLE companys (
-    companysname VARCHAR(255) PRIMARY KEY,
+    companysname VARCHAR(255),
     industry VARCHAR(255),
-    candidate VARCHAR(255)
+    PRIMARY KEY (companysname,industry)
 );
 
 CREATE TABLE explanation(
@@ -34,6 +34,7 @@ CREATE TABLE explanation(
     place VARCHAR(255),
     url VARCHAR(255),
     file VARCHAR(255),
+    candidate INT,
     FOREIGN KEY (companysname) REFERENCES companys(companysname)
 );
 
