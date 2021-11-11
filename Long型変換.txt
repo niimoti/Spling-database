@@ -1,0 +1,18 @@
+public class ExString {
+
+    //String型で受取、その他の型で返す場所
+
+    //long型で返す
+    public Long getLong(String str){
+        long setLong;
+        try {
+            setLong = Long.parseLong(str);
+        } catch (Exception e) {
+            setLong = 0L;
+        }
+        return setLong;
+    }
+
+
+
+}
