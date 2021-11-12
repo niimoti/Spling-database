@@ -35,12 +35,14 @@ CREATE TABLE explanation(
     url VARCHAR(255),
     file VARCHAR(255),
     candidate INT,
+    datetime DATETIME,
     FOREIGN KEY (companysname) REFERENCES companys(companysname)
 );
 
 CREATE TABLE reserve(
     username VARCHAR(255) ,
     companyname VARCHAR(255),
+    datetime DATETIME,
     PRIMARY KEY (username,companyname),
     FOREIGN KEY (username) REFERENCES users(username),
     FOREIGN KEY (companyname) REFERENCES companys(companysname)
