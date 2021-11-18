@@ -76,18 +76,18 @@ REATE TABLE qualification(
 );
 
 CREATE TABLE questionnaire(
-  questionnaireid VARCHAR(255),
-  answerdeadline DATE,
-  distributiondate DATE,
-  PRIMARY KEY (questionnaireid)
+answerdeadline DATETIME,
+distributiondate DATETIME,
+PRIMARY KEY (answerdeadline)
 );
 
 CREATE TABLE answer(
-   questionnaireid VARCHAR(255),
-   username VARCHAR(255),
-   companysanswer VARCHAR(255),
-   progressanswer VARCHAR(255),
-   PRIMARY KEY (questionnaireid,username,companysanswer),
-   FOREIGN KEY (questionnaireid) REFERENCES questionnaire(questionnaireid),
-   FOREIGN KEY (username) REFERENCES users(username)
+answerdeadline DATETIME,
+username VARCHAR(255),
+companysanswer VARCHAR(255),
+progressanswer VARCHAR(255),
+PRIMARY KEY (answerdeadline,username,companysanswer),
+FOREIGN KEY (answerdeadline) REFERENCES questionnaire(answerdeadline),
+FOREIGN KEY (username) REFERENCES users(username),
+FOREIGN KEY (companysanswer) REFERENCES companys(companysname)
 );
