@@ -88,6 +88,5 @@ companysanswer VARCHAR(255),
 progressanswer VARCHAR(255),
 PRIMARY KEY (answerdeadline,username,companysanswer),
 FOREIGN KEY (answerdeadline) REFERENCES questionnaire(answerdeadline),
-FOREIGN KEY (username) REFERENCES users(username),
-FOREIGN KEY (companysanswer) REFERENCES companys(companysname)
+FOREIGN KEY (username) REFERENCES users(username)
 );
