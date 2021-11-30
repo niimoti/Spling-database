@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>アンケート回答</title>
+    <script src="JavaScript/QuestionnaireSample.js"></script>
+</head>
+
+<body>
+    <h1>アンケート回答してください。</h1>
+    <p>前回のアンケートから変更はありますか？</p>
+    <label><input type="radio" name="radio" value="Yes">はい</label>
+    <label><input type="radio" name="radio" value="No" checked>いいえ</label>
+
+    <p>何社受けていますか？</p>
+    <input type="number" id="su" min="0">
+    <input type="button" value="確定" onclick="kaisiClick()">
+    <div id="question">
+    </div>
+</body>
+</html>
