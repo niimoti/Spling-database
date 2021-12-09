@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>アンケート回答</title>
-    <script src="JavaScript/QuestionnaireSample.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>const anid = [],ancom = [],anpro = [],nowtime = [[${nowtime}]],company =['なし']</script>
+    <script th:each="answer : ${answer}" th:inline="javascript">
+        anid.push([[${answer.questionnaireid}]])
+        ancom.push([[${answer.companysanswer}]])
+        anpro.push([[${answer.progressanswer}]])
+    </script>
+    <script th:each="company : ${company}" th:inline="javascript">company.push([[${company.companysname}]])</script>
+    <script src="/JavaScript/QuestionnaireSample.js"></script>
 </head>
 
 <body>
-    <h1>アンケート回答してください。</h1>
-    <p>前回のアンケートから変更はありますか？</p>
-    <label><input type="radio" name="radio" value="Yes">はい</label>
-    <label><input type="radio" name="radio" value="No" checked>いいえ</label>
-
-    <p>何社受けていますか？</p>
-    <input type="number" id="su" min="0">
-    <input type="button" value="確定" onclick="kaisiClick()">
-    <div id="question">
+<h1>アンケートに回答してください。</h1>
+    <div id="rear">
+        <p>前回のアンケートから変更はありますか？</p>
+        <form id="yesno">
+        <label><input type="radio" name="radioq" value="はい">はい</label>
+        <label><input type="radio" name="radioq" value="いいえ">いいえ</label>
+        </form>
     </div>
+<form th:action="@{/student/QuestionnaireAnswer}" method="post" onsubmit="return SendCheck()" id="sendcheck">
+    <input type="button" onclick="SendCheck()">
+    <div id="question"></div>
+</form>
 </body>
+
+<meta th:name="_csrf" th:content="${_csrf.token}"/>
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
 </html>
