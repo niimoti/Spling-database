@@ -1,6 +1,6 @@
 //データ
 const kekka = ['説明会を受けた、予約した','筆記試験を終えた','一次面接を終えた','二次面接を終えた', '最終面接を終えた','内定をもらった','この企業に決めた','お祈りされた']
-let kekkacom = [],kekkapro = [],selectcom = []
+let kekkacom = [],kekkapro = [],selectcom = [], answered = false, id
 
 //最新のアンケートの回答を取得する
 for (let i = 0; anid.length > i && changedata(anid[i]) < nowtime/1000000; i++) {
@@ -12,6 +12,8 @@ for (let i = 0; anid.length > i && changedata(anid[i]) < nowtime/1000000; i++) {
         kekkacom.push(ancom[i])
         kekkapro.push(anpro[i])
     }
+    answered = nowtime / 1000000 - changedata(anid[i]) < 7
+    id = anid[i + 1]
 }
 function changedata(time) {
     let date = time.substr(0,4)
@@ -21,10 +23,11 @@ function changedata(time) {
 
 //イベント処理。
 $(function() {
+    if (answered) document.querySelector('h1').innerText = '回答済みです'
     if (anid.length === 0) {
-        rear.innerHTML = ''
-        question.innerHTML = '<div id="question0"></div>'
-        SelectCom(0)
+        rear.innerHTML = '';
+        question.innerHTML = '<div id="question0"></div>';
+        SelectCom(0);
     } else { //radiobuttonが押されたというイベント処理
         const rdo = document.getElementById('yesno');
         rdo.addEventListener('change', function () {rdo.radioq.value === 'いいえ' ? RadioNo():RadioYes()});
@@ -76,14 +79,14 @@ function SelectCom(num, selected) {
     }
     str1 += '</select>'
     element.innerHTML = str1
-    str2 += num >= kekkacom.length ?'<input type="button" value="企業削除" onclick="RemoveCom(' + num + ')">':''
+    str2 += num >= kekkacom.length && num !== 0 ?'<input type="button" value="企業削除" onclick="RemoveCom(' + num + ')">':''
     element.insertAdjacentHTML("afterend", str2 + '</div>' )
 }
 
 //アンケートの進捗状況回答欄を表示する(checkボタン)
 function SelectPro(num, checked) {
-    let com = document.getElementById('selectcompany' + num),
-        str1 = '<p>' + (num + 1) + '社目</p><p>選んだ企業：　' + com.value + '</p>',
+    const com = document.getElementById('selectcompany' + num)
+    let str1 = '<p>' + (num + 1) + '社目</p><p>選んだ企業：　' + com.value + '</p>',
         str2 = '',
         count = 0
     checked = checked ? checked : kekka[0]
@@ -100,7 +103,7 @@ function SelectPro(num, checked) {
             }
         }
         str2 += selectcom.length !== company.length - 1 ? '<input type="button" value="企業追加" onclick="SelectCom(' + (num + 1) + ')">' : 'これ以上企業を追加できません'
-        str2 += num >= kekkacom.length ?'<input type="button" value="企業削除" onclick="RemoveCom(' + num + ')">':''
+        str2 += num >= kekkacom.length && num !== 0 ?'<input type="button" value="企業削除" onclick="RemoveCom(' + num + ')">':''
     }
     str2 += '<input type="submit" value="送信">'
     str2 += num >= kekkacom.length ? '<input type="button" value="企業選びなおし" onclick="ReselectCom(' + num + ')">': ''
@@ -113,7 +116,7 @@ function RemoveCom(num) {
     let str = ''
     str += '<input type="button" value="企業追加" onclick="SelectCom(' + num + ')">'
     str += num > kekkacom.length ?'<input type="button" value="企業選びなおし" onclick="ReselectCom(' + (num - 1) + ')">' :''
-    str += num > kekkacom.length ?'<input type="button" value="企業削除" onclick="RemoveCom(' + (num - 1) + ')">' :''
+    str += num > kekkacom.length && num < 1 ?'<input type="button" value="企業削除" onclick="RemoveCom(' + (num - 1) + ')">' :''
     str += '<input type="submit" value="送信">'
     document.getElementById('question' + (num + 1)).remove()
     document.getElementById('question' + num).innerHTML = str
@@ -129,17 +132,24 @@ function ReselectCom(num) {
 
 //送信する前のチェック
 function SendCheck(){
+    const rdo = document.getElementById('yesno')
     let count = 0,
         check = document.getElementById('sendcheck'),
         sendcom = [], sendpro = []
-    for (let i = 0; selectcom.length > i; i++) count += check.elements['kekka' + i].value === kekka[kekka.length-2] ? 1 : 0
-    if (count > 1) {
-        alert(kekka[kekka.length-2] + ' は1つしか選べません。')
-        return false
+    if (selectcom[0] === 'なし') sendcom.push('なし')
+    else if (rdo.radioq.value === 'はい'){
+        for (let i = 0; selectcom.length > i; i++) count += check.elements['kekka' + i].value === kekka[kekka.length-2] ? 1 : 0
+        if (count > 1) {
+            alert(kekka[kekka.length-2] + ' は1つしか選べません。')
+            return false
+        }
+        for (let i in selectcom) sendcom.push(selectcom[i])
+        for (let i in selectcom) sendpro.push(check.elements['kekka' + i].value)
+    } else {
+        sendcom = kekkacom
+        sendpro = kekkapro
     }
-    for (let i in selectcom) sendcom.push(selectcom[i])
-    for (let i in selectcom) sendpro.push(check.elements['kekka' + i].value)
-
     document.getElementById('question').insertAdjacentHTML('afterend','<textarea name="sendcom" style="display: none">' + sendcom + '</textarea>')
-    document.getElementById('question').insertAdjacentHTML('afterend','<textarea name="sendopro" style="display: none;">' + sendpro + '</textarea>')
+    document.getElementById('question').insertAdjacentHTML('afterend','<textarea name="sendpro" style="display: none">' + sendpro + '</textarea>')
+    document.getElementById('question').insertAdjacentHTML('afterend','<textarea name="id" style="display: none">' + id + '</textarea>')
 }
