@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/CaleData.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script th:inline="javascript">
+        const role = [[${userrole}]],
+            deadline = [],
+            cname = [],
+            cdata = [],
+            rcom = [],
+            rstu = [],
+            anid = [],
+            anusr = [],
+            anpro = [],
+            question = [],
+            stuname = [],
+            stuclass = [],
+            nowtime = [[${nowtime}]],
+            new1 = [],
+            new2 = [],
+            new3 = []
+    </script>
+    <script th:each="explanation : ${explanation}" th:inline="javascript">
+        cname.push([[${explanation.companysname}]])
+        cdata.push([[${explanation.reservedate}]])
+        deadline.push([[${explanation.reservedeadline}]])
+    </script>
+    <script th:each="reserve : ${reserve}" th:inline="javascript">
+        rcom.push([[${reserve.companyname}]])
+        rstu.push([[${reserve.username}]])
+    </script>
+    <script th:each="answer : ${answer}" th:inline="javascript">
+        anid.push([[${answer.questionnaireid}]])
+        anusr.push([[${answer.username}]])
+        anpro.push([[${answer.progressanswer}]])
+    </script>
+    <script th:each="questionnaire : ${questionnaire}" th:inline="javascript">
+        question.push([[${questionnaire.answerdeadline}]])
+    </script>
+    <script th:each="student : ${student}" th:inline="javascript">
+        stuname.push([[${student.username}]])
+        stuclass.push([[${student.className}]])
+    </script>
+    <script th:each="resdata : ${resdata}" th:inline="javascript">
+        new1.push([[${resdata.companysname}]])
+        new2.push([[${resdata.reservedate}]])
+        new3.push([[${resdata.reservedeadline}]])
+    </script>
+    <script src="/JavaScript/NewInfo.js"></script>
+    <script src="/JavaScript/CaleData.js"></script>
+    <script src="/JavaScript/AnswerGraph.js"></script>
+    <title>studentMenu</title>
+</head>
+<body>
+<header>
+    <ul class="menu">
+        <li><a th:href="@{/}">学生home</a></li>
+        <li><a th:href="@{/student/ReserveSample}">説明会一覧</a>
+            <ul>
+                <li><a th:href="@{/student/ReserveSample}">説明会予約</a></li>
+                <li><a th:href="@{/student/Reservationlist}">予約一覧</a></li>
+            </ul>
+        </li>
+        <li><a href="#">プロフィール</a>
+            <ul>
+                <li><a th:href="@{/student/Profile}">プロフィール情報</a></li>
+                <li><a th:href="@{/student/ProfileChange}">プロフィール変更</a></li>
+            </ul>
+        </li>
+        <form th:action="@{/logout}" name="logout"><li><a href="javascript:logout.submit()">ログアウト</a></li></form>
+    </ul>
+</header>
+
+<form th:action="@{/student/QuestionnaireSample}" method="get">
+    <button>アンケート</button>
+</form>
+
+<div class="wrapper">
+    <select id="stuname">
+        <option value="com">全企業説明会の日程</option>
+        <option th:value="${username}">あなたの予約日程</option>
+    </select>
+    <input type="button" value="カレンダー変更" onclick="CalenderChange()">
+    <!-- xxxx年xx月を表示 -->
+    <h1 id="header"></h1>
+    <!-- ボタンクリックで月移動 -->
+    <div id="next-prev-button">
+        <!--　前の月を表示　-->
+        <button id="prev" onclick="prev()">‹</button>
+        <!--　次の月を表示　-->
+        <button id="next" onclick="next()">›</button>
+    </div>
+    <!-- カレンダー -->
+    <div id="calendar"></div>
+</div>
+<div class="Calendar">
+    <table>
+        <tr>
+            <td>
+                <div id="reservecontents">ここに予定詳細が入ってくる</div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="conditions"></div>
+<div id = "stage">
+    <h1>グラフを表示</h1>
+</div>
+
+<h1>企業新着情報</h1>
+<form th:action="@{/student/ReserveSample}" method="get">
+    <div id="newInfo"></div>
+</form>
+
+<footer>
+    <p>フッター</p>
+    <p>卒業研究 more²</p>
+</footer>
+</body>
+</html>
