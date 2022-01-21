@@ -26,17 +26,19 @@ CREATE TABLE companys (
     PRIMARY KEY (companysname,industry)
 );
 
-CREATE TABLE explanation(
-    companysname VARCHAR(255) PRIMARY KEY,
-    reservedate DATE,
-    reservedeadline DATE,
-    contents VARCHAR(255),
-    place VARCHAR(255),
-    url VARCHAR(255),
-    file VARCHAR(255),
-    candidate INT,
-    expdatetime DATETIME,
-    FOREIGN KEY (companysname) REFERENCES companys(companysname)
+create table information_session(
+    id bigint primary key ,
+    url varchar(255),
+    contents varchar(255),
+    day datetime,
+    deadline date,
+    explanation varchar(255),
+    industry varchar(255),
+    k_name varchar(255),
+    place varchar(255),
+    tempfile varchar(255),
+    ecpdatetime datetime,
+    foreign key (k_name) references companys(companysname)
 );
 
 CREATE TABLE reserve(
