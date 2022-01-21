@@ -51,23 +51,23 @@ INSERT INTO users VALUE
 ,('hiranaka','$2a$10$RJleWuE1zjNdfl62dijLsucW6PpkGbL5Y4cS1cfdsv4/mB1EMYIjK','SPTEACHER','ghiranaka@std.hi-joho.ac.jp','平中祐太郎',TRUE,FALSE,FALSE,FALSE)
 ,('takahasi','$2a$10$VUWEh.Oz3u/L2SMnpHnQvexi213ML6OwTHosn2sQ2WGtDqBO7TBCu','TEACHER','gtakahasi@std.hi-joho.ac.jp','高橋雅之',FALSE,TRUE,FALSE,FALSE);
 
-
 #compnysのデータ
 INSERT INTO companys VALUE
-('広島情報専門学校','その他',0),
-('下井建設株式会社','その他',0),
-('okasatoGAMESystems','ゲーム系',0),
-('kame芸能プロダクション','営業・事務・販売系',0),
-('Uemoto','営業・事務・販売系',0),
-('SideDragon株式会社','ゲーム系',0),
-('澤山工業株式会社','製造系',0),
-('仁System','システム開発系',0),
-('hirokane工業株式会社','製造系',0),
-('株式会社Tommy','システム開発系',0),
-('Ngood株式会社','システム運用系',0),
-('simotaketecService','システム運用系',0),
-('任天堂株式会社','ゲーム系',0),
-('株式会社SCC','システム運用系',0);
+('広島情報専門学校','その他'),
+('下井建設株式会社','その他'),
+('okasatoGAMESystems','ゲーム系'),
+('kame芸能プロダクション','営業・事務・販売系'),
+('Uemoto','営業・事務・販売系'),
+('SideDragon株式会社','ゲーム系'),
+('澤山工業株式会社','製造系'),
+('仁System','システム開発系'),
+('hirokane工業株式会社','製造系'),
+('株式会社Tommy','システム開発系'),
+('Ngood株式会社','システム運用系'),
+('Ngood株式会社','システム開発系'),
+('simotaketecService','システム運用系'),
+('任天堂株式会社','ゲーム系'),
+('株式会社SCC','システム運用系');
 
 #teacherのデータ
 INSERT INTO teacher VALUE
