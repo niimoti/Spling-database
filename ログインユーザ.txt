@@ -1,6 +1,6 @@
 URL	：　10.16.54.10:8080
 学生	：　gakusei
-講師	：　koushi
+講師	：　kyoushi
 就活講師：  syukatu
 
 パスワードは全部「password」
