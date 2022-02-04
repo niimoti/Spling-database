@@ -1,0 +1,119 @@
+@charset "utf-8";
+@import url(destyle.css);
+/*全体*/
+.wrapper{
+    max-width: 45rem;
+    margin: 0 auto;
+    color: #666;
+}
+#header {
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+    margin: 1rem 0 0;
+}
+
+#stunamecale{
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    margin: 1rem;
+    width: 10rem;
+}
+
+.cale_button{
+    border: solid 0.2rem #000;
+    border-radius: 5px;
+    background-color: #dddddd;
+    color: #000;
+    width: 8rem;
+}
+
+/*カレンダー*/
+#calendar {
+    text-align: center;
+    width: 100%;
+    margin: 3rem auto;
+
+}
+.wrapper table {
+    outline: 2px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+}
+.wrapper th {
+    color: #000;
+}
+.wrapper th, .wrapper td {
+    outline: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.wrapper th:hover, .wrapper td:hover {
+    background-color: #cccccc;
+}
+/*日曜日*/
+.wrapper td:first-child {
+    color: red;
+}
+/*土曜日*/
+.wrapper td:last-child {
+    color: blue;
+}
+/*前後月の日付*/
+.wrapper td.disabled {
+    color: #ccc;
+}
+.wrapper td.disabled:hover {
+    background: #333333;
+}
+/*本日*/
+.wrapper td.today {
+    background-color: #D65E72;
+    color: #fff;
+}
+.wrapper td.today:hover {
+    background-color: #81bcd8;
+}
+
+/*ボタン*/
+#next-prev-button {
+    position: relative;
+}
+#next-prev-button button{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+}
+#next-prev-button button:hover{
+    background-color: #D4BB92;
+    border-color: #D4BB92;
+}
+#prev {
+    float: left;
+}
+#next {
+    float: right;
+}
+
+/*予約されている所の表示*/
+/* !important クラス内で最優先される*/
+.wrapper td.reserve {
+    font-family: "Arial Black", serif !important;
+}
+
+.Calendar table {
+    border: solid 0.1rem #000;
+    background: #cccccc;
+    box-shadow: 0 0 10px #848484;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+    width: 45rem;
+    text-align: center;
+}
