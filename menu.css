@@ -1,0 +1,550 @@
+/*#stage {*/
+/*    max-width: 1000px;*/
+/*}*/
+
+@import url(destyle.css);
+
+body {
+    animation: fade-in 1.5s forwards;
+    font-family: "ＭＳ 明朝";
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+@keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+.title_tag {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+/*h1{*/
+/*    font-size: 2rem;*/
+/*    font-weight: bolder;*/
+/*}*/
+
+button {
+    border: solid 0.2rem #000;
+    border-radius: 10px;
+    background-color: #888;
+    color: #000;
+    padding: 0.2rem;
+}
+
+body button {
+    border: solid 0.2rem #000;
+    border-radius: 10px;
+    background-color: #ddd;
+    color: #000;
+    padding: 0.2rem;
+}
+
+button:hover {
+    background-color: #81bcd8;
+    transition: 1.5s;
+}
+
+input {
+    height: 2rem;
+    width: 100%;
+    margin: 10px 0;
+    padding: 0 16px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 0 0 1px #000 inset;
+    font-size: 16px;
+    max-width: 60%;
+    /*appearance: none;*/
+    /*-webkit-appearance: none;*/
+    /*-moz-appearance: none;*/
+}
+
+input:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+label input {
+    border-radius: 10px;
+}
+
+/*-----------------------テーブル始----------------------------*/
+
+
+
+.table_box {
+    border-top: solid 0.5rem #888888;
+    border-bottom: solid 0.5rem #888888;
+    margin: 2rem;
+    padding: 1rem;
+    width: 95vw;
+}
+
+table {
+    border-radius: 5px;
+    border-collapse: collapse;
+    /*font-family: "ＭＳ 明朝";*/
+    /*mso-cellspacing: 10px;*/
+    /*border-top: solid 0.5rem #888888;*/
+    /*border-bottom: solid 0.5rem #888888;*/
+    /*align: center;*/
+    /*margin: auto;*/
+    /*padding: 1rem;*/
+    /*width: 90%;*/
+}
+
+table,th table,td {
+    margin: 1rem;
+    padding: 1rem ;
+    /*text-align: center;*/
+    /*justify-content: space-around;*/
+    /*border-bottom: 0.2rem outset #000;*/
+    border: thick double  #000;
+    /*width: 50%;*/
+    /*border-left: 0.1rem solid rgba(200,200,200,0);*/
+    /*border-right: 0.1rem solid rgba(200,200,200,0);*/
+}
+
+.table_box button {
+    /*border: solid 0.2rem #000;*/
+    /*border-radius: 5px;*/
+    /*background-color: #888;*/
+    /*color: #000;*/
+    /*padding: 0.2rem;*/
+}
+/*-------------------------テーブル終--------------------------*/
+
+/*header部分開始*/
+header{
+    margin: 1rem;
+    color: #000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: solid 3px #ccc;
+    padding: 30px 20px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 3px #ccc inset;
+    font-family: "ＭＳ 明朝";
+}
+
+.menu_title{
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+.header_area {
+    margin: 0 20px;
+    border-bottom: solid 1px #dddddd;
+    background-color: #000;
+    color: #fff;
+}
+
+.header_info{
+    display: flex;
+}
+
+.TopPageTag{
+    float: left;
+    left: 20%;
+    width: 70%;
+    padding: 5px 0;
+}
+.TopPageTag-inner{
+    width: 40%;
+    margin-right: auto;
+}
+
+.School-info{
+    float: left;
+    width: 30%;
+    text-align: left;
+    padding: 5px 0;
+}
+
+.tel-num{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tel-num:hover {
+    color: #eb486b;
+    transition: 2s;
+}
+/*header部分終了*/
+
+
+/*ナビゲーション部分開始*/
+
+.menu.open {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*メニューを元の位置へ戻す*/
+
+}
+
+/*トグルボタンのスタイルを指定*/
+.Toggle {
+    display: block;
+    position: fixed;    /* bodyに対しての絶対位置指定 */
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    z-index: 3;
+    right:15px;
+}
+
+.Toggle span {
+    display: block;
+    position: absolute;
+    width: 50px;
+    border-bottom: solid 4px #333;
+    -webkit-transition: .35s ease-in-out;	/*変化の速度を指定*/
+    -moz-transition: .35s ease-in-out;		/*変化の速度を指定*/
+    transition: .35s ease-in-out;			/*変化の速度を指定*/
+
+}
+/*各ボーダー少しずつずらす*/
+.Toggle span:nth-child(1) {
+    top:5px;
+}
+.Toggle span:nth-child(2) {
+    top: 18px;
+}
+.Toggle span:nth-child(3) {
+    top: 32px;
+}
+.Toggle.active span:nth-child(1) {
+    top: 18px;
+    /* 1番目のspanをマイナス45度に */
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/* 2番目と3番目のspanを45度に */
+.Toggle.active span:nth-child(2),
+.Toggle.active span:nth-child(3) {
+    top: 18px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*----------------------------------ここからPCモニターの記述-----------*/
+@media screen and (min-width: 600px) {
+
+    /*ロゴの大きさを調整*/
+    /*#logo img{max-width:250px;}*/
+
+
+
+    .Toggle{
+        display: none;
+    }
+    .menu{
+        width: 100%;
+        font-size:0.9em;
+        background-color: transparent;
+        margin:0 10px;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    .menu ul{
+        height: 70px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .menu ul li a{
+        padding: 0 1em;
+        border-bottom: none;
+    }
+    .menu ul li a:hover{
+        background-color:transparent;
+    }
+}
+
+/*----------------------------------ここまでPCモニターの記述-----------*/
+
+
+body{
+    overflow-x: hidden;
+    text-align: center;
+    z-index: 1000;
+}
+
+main{
+    padding: 50px 0;
+}
+
+.calender_top {
+    background: rgba(230,230,230,0.8 );
+    border: 2px solid#cccccc;
+    box-shadow: 0 0 10px #848484;
+    text-align: center;
+    margin: 30px 200px;
+    padding: 20px 0;
+}
+
+.student {
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px;
+}
+
+.student h1{
+    font-size: 2rem;
+}
+
+.condtions_Top{
+    margin-top: 1rem;
+}
+
+#conditions {
+    display: flex;
+    margin: 0 20rem;
+    padding: 0.5rem 0;
+    justify-content: space-around;
+}
+
+#class{
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    max-width: 10rem;
+    padding: 0.5rem;
+}
+
+#time{
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    max-width: 10rem;
+    padding: 0.5rem;
+}
+
+#progress{
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    max-width: 15rem;
+    padding: 0.5rem;
+ }
+
+#id{
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    max-width: 10rem;
+    padding: 0.5rem;
+}
+
+#unit{
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    max-width: 10rem;
+    padding: 0.5rem;
+}
+
+.graph_button {
+    border: solid 0.2rem #000;
+    border-radius: 5px;
+    background-color: #dddddd;
+    color: #000;
+    width: 8rem;
+    padding: 0.5rem;
+}
+.graph_button::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #333;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform .3s;
+}
+.graph_button:hover::after {
+    transform: scale(1, 1);
+}
+
+.graph div>style {
+    margin: 100px;
+}
+
+/*‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐　おすすめ企業*　‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐*/
+
+.company_media {
+    margin: 2rem 0;
+}
+
+#company_search label{
+    margin: 1.5rem 0;
+    border: solid 0.3rem #000;
+    border-radius: 5px;
+    width: 10rem;
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+#newInfo ul {
+
+}
+
+#newInfo ul li {
+    text-align: center;
+    display: inline-block;
+    margin: 1rem;
+    padding: 1.3rem;
+    width: 20%;
+    background-color: #fff;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 0 0 1px #ccc inset;
+}
+
+#newInfo ul li button {
+    border: solid 0.2rem #000;
+    border-radius: 5px;
+    background-color: #dddddd;
+    color: #000;
+    width: 11rem;
+}
+
+/*---------------------------------------------------*/
+
+
+
+/*フッター部分*/
+footer{
+    color: #000;
+    margin: 1rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: solid 3px #ccc;
+    padding: 30px 20px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 3px #ccc inset;
+    font-family: "ＭＳ 明朝";
+}
+
+.menu-left, .menu-center1, .menu-center2, .menu-right{
+    width: 100%;
+}
+
+footer h1{
+    font-size: 1rem;
+}
+
+footer h3{
+    font-size: 2rem;
+}
+
+.footer_area{
+
+}
+
+.foot-wrap{
+    padding: 30px 20px;
+    display: flex;
+}
+
+.foot-wrap div ul {
+    padding: 10px 20px;
+}
+
+.foot-wrap h3 {
+    border-bottom: solid 0.2rem #000;
+    font-size: 1.5rem;
+    width: 80%;
+}
+
+.foot-wrap div ul li {
+    padding: 5px 0;
+}
+
+.foot-wrap ul li a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color:#000;
+}
+
+.foot-wrap ul li a:hover {
+    color: #00008b;
+}
+
+.foot-wrap ul li a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #333;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform .3s;
+}
+.foot-wrap ul li a:hover::after {
+    transform: scale(1, 1);
+}
+
+.f_box2{
+    padding: 50px 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.School_Tag_F{
+    width: 65%;
+}
+
+/*.school_HP a {*/
+/*    font-size: 2rem;*/
+/*}*/
+
+.school_HP a:hover{
+    color: #00008b;
+    transition: 1s;
+}
+
+.school_HP a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 2rem;
+    color:#000;
+}
+.school_HP a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #333;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform .3s;
+    color: #81bcd8;
+}
+.school_HP a:hover::after {
+    transform: scale(1, 1);
+}
+
+.School-info_F{
+    width: 35%;
+    text-align: left;
+}
+
+button{
+
+}
