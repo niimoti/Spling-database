@@ -5,6 +5,7 @@
 @import url(destyle.css);
 
 body {
+    overflow-x: hidden;
     animation: fade-in 1.5s forwards;
     font-family: "ＭＳ 明朝";
     -webkit-appearance: none;
@@ -39,6 +40,27 @@ body button {
     color: #000;
     padding: 0.2rem;
 }
+
+input[type=radio] {
+    display: none; /* ラジオボタンを非表示にする */
+}
+.label {
+    display: block; /* ブロックレベル要素化する */
+    float: left; /* 要素の左寄せ・回り込を指定する */
+    margin: 5px; /* ボックス外側の余白を指定する */
+    width: 100px; /* ボックスの横幅を指定する */
+    height: 45px; /* ボックスの高さを指定する */
+    padding-left: 5px; /* ボックス内左側の余白を指定する */
+    padding-right: 5px; /* ボックス内御右側の余白を指定する */
+    color: #b20000; /* フォントの色を指定 */
+    text-align: center; /* テキストのセンタリングを指定する */
+    line-height: 45px; /* 行の高さを指定する */
+    cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+    border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+    border-radius: 5px; /* 角丸を指定する */
+}
+
+
 
 button:hover {
     background-color: #81bcd8;
@@ -330,7 +352,7 @@ main{
     border-radius: 5px;
     max-width: 15rem;
     padding: 0.5rem;
- }
+}
 
 #id{
     border: solid 0.3rem #000;
