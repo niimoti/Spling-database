@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/student_nav.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/destyle.css">
+    <title>プロフィール変更</title>
+    <script th:each="student : ${student}" th:inline="javascript">const qualification = [],stindustry = [[${student.industry}]],classname = [[${student.className}]]</script>
+    <script th:each="qualification : ${qualification}" th:inline="javascript">
+        qualification.push([[${qualification.qualification}]])
+    </script>
+</head>
+<body>
+<header>
+    <div class="header_area">
+        <div class="header_info">
+            <div class="TopPageTag">
+                <div class="TopPageTag-inner">
+                    <ul class="menu_title">
+                        <li><a th:href="@{/}">学生home</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="School-info">
+                <div>
+                    <p>HICS電話番号：　<a href="tel:082-252-4411"><span class="tel-num">082-252-4411</span></a></p>
+                </div>
+                <div>
+                    <p>受付時間：　9：00　～　17：00（土・日・祝日を除く）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="Nav-Top">
+        <div class="menu">
+            <ul class="Top-Navigation">
+                <li class="menu__Student"><a th:href="@{/student/ISSearch}">説明会情報</a>
+                    <ul class="inner_btn">
+                        <div class="inner_memu">
+                            <div class="inner_memu2">
+                                <li><a th:href="@{/student/ISSearch}">・説明会予約</a></li>
+                                <li><a th:href="@{/student/Reservationlist}">・予約一覧</a></li>
+                                <li><a th:href="@{/student/Recommendation}">・おすすめ企業</a></li>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+                <li class="menu__Student"><a th:href="@{/student/Profile}">プロフィール</a>
+                    <ul class="inner_btn">
+                        <div class="inner_memu">
+                            <div class="inner_memu2">
+                                <li><a th:href="@{/student/Profile}">・プロフィール情報</a></li>
+                                <li><a th:href="@{/student/ProfileChange}">・プロフィール変更</a></li>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://vjq6quz598o-496ff2e9c6d22116-8050-colab.googleusercontent.com/">履歴書AI</a>
+                </li>
+                <li>
+                    <a th:href="@{/student/QuestionnaireSample}">アンケート回答</a>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" name="logout"><a href="javascript:logout.submit()">ログアウト</a></form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<form th:action="@{/student/ProfileChange}" method="post" onsubmit="return SendProfile()">
+    <label><input type="radio" name="pro" value="希望職種" class="label">希望職種</label>
+    <label><input type="radio" name="pro" value="取得資格">取得資格</label>
+    <label><input type="radio" name="pro" value="パスワード">パスワード</label>
+    <label><input type="radio" name="pro" value="メールアドレス">メールアドレス</label>
+    <div id="changeprofile"></div>
+</form>
+<button onclick="location.href='/student/Profile'">プロフィール情報へ</button>
+<button onclick="location.href='/'">ホームへ</button>
+<footer>
+    <div class="footer_area">
+        <div class="foot-wrap">
+            <div class="menu-left">
+                <h3><strong>説明会情報</strong></h3>
+                <ul class="foot-left">
+                    <li><a th:href="@{/student/ISSearch}">説明会予約</a></li>
+                    <li><a th:href="@{/student/Reservationlist}">予約一覧</a></li>
+                </ul>
+            </div>
+            <div class="menu-center1">
+                <h3><strong>プロフィール</strong></h3>
+                <ul class="foot-center">
+                    <li><a th:href="@{/student/Profile}">プロフィール情報</a></li>
+                    <li><a th:href="@{/student/ProfileChange}">プロフィール変更</a></li>
+                </ul>
+            </div>
+            <div class="menu-center2">
+                <h3><strong>履歴書AI</strong></h3>
+                <ul class="foot-center">
+                    <li><a href="https://vjq6quz598o-496ff2e9c6d22116-8050-colab.googleusercontent.com/">履歴書AI</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="f_box2">
+            <div class="School_Tag_F">
+                <div class="School_Tag_F_inner">
+                    <div class="school_HP">
+                        <a href="https://www.hi-joho.ac.jp/"><strong>JOHO広島情報専門学校</strong></a>
+                    </div>
+                </div>
+            </div>
+            <div class="School-info_F">
+                <p>HICS電話番号：　<a href="tel:082-252-4411"><span class="tel-num">082-252-4411</span></a></p>
+                <p>受付時間：　9：00　～　17：00（土・日・祝日を除く）</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    const docpro = document.getElementsByName('pro'), docchan = document.getElementById('changeprofile'), industrySel = ['システム運用系','システム開発系','ゲーム系','営業・事務・販売系','製造系','その他'], qualificationSel = ['ITパスポート','情報セキュリティマネジメント','基本情報技術者','応用情報技術者','データベーススペシャリスト','ネットワークスペシャリスト','情報処理安全確保支援士','エンベデッドシステムスペシャリスト','マイクロソフトオフィススペシャリスト（MOS）','Oracle Master','シスコ技術者認定試験','CompTIA Network+','SEA/J','Python エンジニア認定試験','CGクリエイター検定','CGエンジニア検定','情報検定（J検）','画像処理エンジニア検定','ビジネス能力検定（B検）ジョブパス','秘書技能検定','日商簿記検定','その他']
+    let sendprofile = 1
+    docpro[0].addEventListener('change', SyokuChange)
+    docpro[1].addEventListener('change', SikakuChange)
+    docpro[2].addEventListener('change', PassChange)
+    docpro[3].addEventListener('change', MailChange)
+
+    function SyokuChange() {
+        sendprofile = 1
+        let str = '<p>現在の希望職種：' + stindustry + '</p>',j
+        for (let i = 0; industrySel.length > i; i++) {
+            str += '<label><input type="radio" name="sendtext" value="' + industrySel[i] + '">' + industrySel[i] + '<br></label>'
+            j = industrySel[i] === stindustry ? i : 0
+        }
+        docchan.innerHTML = str + '<button type="submit">変更</button>'
+        document.getElementsByName('sendtext')[j].checked = true
+    }
+
+    function SikakuChange() {
+        let str = '<p>現在取得している資格：</p><table class="table_box"><tr>',boolean = true
+        for (let i = 0; qualification.length > i; i++) str += '<td>' + qualification[i] + '</td><td><button name="delete" value="' + qualification[i] + '">削除</button></td></tr>'
+        str += '</table><p>新しく取得した資格を選んでください</p><select name="newqualification">'
+        for (let i = 0; qualificationSel.length - 1 > i; i++) {
+            for (let j = 0; qualification.length > j; j++) {
+                if (qualificationSel[i] === qualification[j]) {
+                    boolean = false
+                    break
+                }
+            }
+            str += boolean ? '<option value="' + qualificationSel[i] + '">' + qualificationSel[i] + '</option>' : boolean = true
+        }
+        docchan.innerHTML = str + '<option value="' + qualificationSel[qualificationSel.length - 1] + '">' + qualificationSel[qualificationSel.length - 1] + '</option></select><div id="detailqualification"></div><button type="submit">変更</button>'
+        const element = document.getElementsByName('newqualification')
+        NewQualification()
+        element[0].addEventListener('change', NewQualification)
+        function NewQualification() {
+            let doc = document.getElementById('detailqualification')
+            switch (element[0].value) {
+                case 'ビジネス能力検定（B検）ジョブパス':
+                case '日商簿記検定':
+                    sendprofile = 2
+                    doc.innerHTML = '<select name="detapro"><option value="1級">1級</option><option value="2級">2級</option><option value="3級">3級</option>'
+                    break
+                case 'その他':
+                    sendprofile = 3
+                    doc.innerHTML = '<label>取得した資格を記入してください：<input type="text" name="detapro" placeholder="記入してください"></label>'
+                    break
+                default:
+                    sendprofile = 4
+                    doc.innerHTML = ''
+                    break
+            }
+        }
+    }
+
+    function PassChange() {
+        sendprofile = 0
+        let str = '<label>現在のパスワードを記入してください：<input type="password" name="nowpass" placeholder="記入してください"></label><br>' +
+            '<label>変更後のパスワードを記入してください：<input type="password" name="sendtext" placeholder="記入してください"></label><br>'
+        docchan.innerHTML = str + '<button type="submit">変更</button>'
+    }
+
+    function MailChange() {
+        sendprofile = 0
+        let str = '<label>変更後のメールアドレスを記入してください：<input type="text" name="sendtext" placeholder="記入してください"></label><br>'
+        docchan.innerHTML = str + '<button type="submit">変更</button>'
+    }
+
+    function SendProfile() {
+        const doc = document.getElementById('changeprofile'),
+            detapro = document.getElementsByName('detapro'),
+            a = document.getElementsByName('newqualification')
+        switch (sendprofile) {
+            case 1:
+                doc.insertAdjacentHTML('afterend','<textarea name="className" style="display: none">' + classname + '</textarea>')
+                break
+            case 2:
+                doc.insertAdjacentHTML('afterend','<textarea name="sendtext" style="display: none">' + a[0].value + detapro[0].value + '</textarea>')
+                break
+            case 3:
+                doc.insertAdjacentHTML('afterend','<textarea name="sendtext" style="display: none">' + detapro[0].value + '</textarea>')
+                break
+            case 4:
+                doc.insertAdjacentHTML('afterend','<textarea name="sendtext" style="display: none">' + a[0].value + '</textarea>')
+                break
+        }
+    }
+</script>
+</body>
+</html>
